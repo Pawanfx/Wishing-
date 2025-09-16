@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #ffb6c1, #ffcce0);
+      height: 100vh;
+      overflow-x: hidden;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Floating emojis (fixed positions) */
+    .emoji {
+      position: absolute;
+      font-size: 15px;
+    }
+    .emoji1 { top: 100px; left: 10px; }
+    .emoji2 { top: 200px; left: 10px; }
+    .emoji3 { top: 300px; left: 10px; }
+    .emoji4 { top: 400px; left: 10px; }
+    .emoji5 { top: 500px; left: 10px; }
+    .emoji6 { top: 100px; right: 10px; }
+    .emoji7 { top: 200px; right: 10px; }
+    .emoji8 { top: 300px; right: 10px; }
+    .emoji9 { top: 400px; right: 10px; }
+    .emoji10 { top: 500px; right: 10px; }
+    .emoji11 { top: 10px; left: 10%; transform: translateX(-50%); }
+    .emoji12 { top: 10px; left: 30%; transform: translateX(-50%); }
+    .emoji13 { top: 10px; left: 60%; transform: translateX(-50%); }
+    .emoji14 { top: 10px; left: 80%; transform: translateX(-50%); }
+
+    /* Message box */
+    .message {
+      margin-top: 180px;
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 20px 30px;
+      border-radius: 20px;
+      font-size: 15px;
+      color: #4a0066;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .message:hover {
+      transform: scale(1.05);
+    }
+
+    /* Hidden content */
+    .hidden {
+      display: none;
+    }
+
+    .second-section {
+      margin-top: 40px;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 12px 30px;
+      font-size: 18px;
+      color: white;
+      background: linear-gradient(90deg, #ff6ec4, #7873f5);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      background: linear-gradient(90deg, #ff4ecd, #5a4ef5);
+    }
+
+    /* Image container */
+    .img-container img {
+      width: 220px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Emojis -->
+  <div class="emoji emoji1">🎂</div>
+  <div class="emoji emoji2">🎀</div>
+  <div class="emoji emoji3">🎁</div>
+  <div class="emoji emoji4">💖</div>
+  <div class="emoji emoji5">🦄</div>
+  <div class="emoji emoji6">🌈</div>
+  <div class="emoji emoji7">✨</div>
+  <div class="emoji emoji8">🍰</div>
+  <div class="emoji emoji9">🌷</div>
+  <div class="emoji emoji10">💝</div>
+  <div class="emoji emoji11">🍫</div>
+  <div class="emoji emoji12">🌟</div>
+  <div class="emoji emoji13">🎀</div>
+  <div class="emoji emoji14">🌸</div>
+
+  <!-- First message -->
+  <div class="message" id="firstMessage">✨ I have something for you... 🌟</div>
+
+  <!-- Hidden section -->
+  <div class="hidden" id="secondSection">
+    <div class="message">It's a special day for you... 🥳</div>
+    <br>
+    <button class="btn" onclick="goNext()">✨ Enter your Day 💖</button>
+    <div class="img-container">
+      <img src="https://i.postimg.cc/Vs9mYXMQ/b02724c13a38eaca517818820ad8e9b5.jpg" alt="Birthday Image">
+    </div>
+  </div>
+
+  <script>
+    // Show hidden section when first message is clicked
+    document.getElementById("firstMessage").addEventListener("click", function() {
+      document.getElementById("firstMessage").style.display = "none";
+      document.getElementById("secondSection").style.display = "block";
+    });
+
+    // Go to next page
+    function goNext() {
+      window.location.href = "nextpage.html"; // Replace later with your page
+    }
+  </script>
+
+</body>
+</html>

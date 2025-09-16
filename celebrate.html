@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Madam ji 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      background: black;
+      text-align: center;
+      color: white;
+    }
+
+    /* Canvases for animation */
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Content wrapper */
+    .content {
+      position: relative;
+      top: 25%;
+      z-index: 2;
+    }
+
+    /* Heading with unique entry effect */
+    h1 {
+      font-size: 30px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 20px #ff66cc, 0 0 40px #ff33aa;
+      opacity: 0;
+      transform: scale(0.8);
+      animation: fadeInScale 2s forwards;
+    }
+
+    @keyframes fadeInScale {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 14px 30px;
+      font-size: 16px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(90deg, #ff4ecd, #7873f5);
+      box-shadow: 0px 0px 15px rgba(255, 0, 200, 0.6);
+      transition: transform 0.3s ease;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Celebrate button position */
+    .celebrate-btn {
+  display: block;
+  margin: 40px auto 0;
+  position: relative;
+}
+
+
+    /* Cake cutting button position */
+    .cake-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animations -->
+  <canvas id="starsCanvas"></canvas>
+  <canvas id="petalsCanvas"></canvas>
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Content -->
+  <div class="content">
+    <h1>Happy Birthday Madam ji</h1>
+  </div>
+
+  <button class="btn celebrate-btn" onclick="startAnimations()">🎉 Celebrate your birthday</button>
+  <button class="btn cake-btn" onclick="goToCake()">🍰 Cake cutting</button>
+
+  <script>
+    // ===== STAR ANIMATION =====
+    const starsCanvas = document.getElementById("starsCanvas");
+    const ctxStars = starsCanvas.getContext("2d");
+    starsCanvas.width = window.innerWidth;
+    starsCanvas.height = window.innerHeight;
+    let stars = [];
+
+    function createStars() {
+      for (let i = 0; i < 100; i++) {
+        stars.push({
+          x: Math.random() * starsCanvas.width,
+          y: Math.random() * starsCanvas.height,
+          radius: Math.random() * 2,
+          speed: Math.random() * 0.5
+        });
+      }
+    }
+
+    function drawStars() {
+      ctxStars.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+      ctxStars.fillStyle = "white";
+      stars.forEach(star => {
+        ctxStars.beginPath();
+        ctxStars.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctxStars.fill();
+        star.y += star.speed;
+        if (star.y > starsCanvas.height) star.y = 0;
+      });
+    }
+
+    // ===== PETAL ANIMATION =====
+    const petalsCanvas = document.getElementById("petalsCanvas");
+    const ctxPetals = petalsCanvas.getContext("2d");
+    petalsCanvas.width = window.innerWidth;
+    petalsCanvas.height = window.innerHeight;
+    let petals = [];
+
+    function createPetals() {
+      for (let i = 0; i < 30; i++) {
+        petals.push({
+          x: Math.random() * petalsCanvas.width,
+          y: Math.random() * petalsCanvas.height,
+          size: Math.random() * 15 + 10,
+          speed: Math.random() * 2 + 1
+        });
+      }
+    }
+
+    function drawPetals() {
+      ctxPetals.clearRect(0, 0, petalsCanvas.width, petalsCanvas.height);
+      ctxPetals.fillStyle = "pink";
+      petals.forEach(petal => {
+        ctxPetals.beginPath();
+        ctxPetals.arc(petal.x, petal.y, petal.size / 2, 0, Math.PI * 2);
+        ctxPetals.fill();
+        petal.y += petal.speed;
+        if (petal.y > petalsCanvas.height) petal.y = 0;
+      });
+    }
+
+    // ===== FIREWORKS ANIMATION =====
+    const fireworksCanvas = document.getElementById("fireworksCanvas");
+    const ctxFireworks = fireworksCanvas.getContext("2d");
+    fireworksCanvas.width = window.innerWidth;
+    fireworksCanvas.height = window.innerHeight;
+
+    let fireworks = [];
+
+    function createFirework() {
+      const x = Math.random() * fireworksCanvas.width;
+      const y = Math.random() * fireworksCanvas.height / 2;
+      for (let i = 0; i < 50; i++) {
+        fireworks.push({
+          x,
+          y,
+          dx: (Math.random() - 0.5) * 5,
+          dy: (Math.random() - 0.5) * 5,
+          life: 100,
+          color: `hsl(${Math.random() * 360},100%,50%)`
+        });
+      }
+    }
+
+    function drawFireworks() {
+      ctxFireworks.fillStyle = "rgba(0,0,0,0.1)";
+      ctxFireworks.fillRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
+      fireworks.forEach((f, i) => {
+        ctxFireworks.fillStyle = f.color;
+        ctxFireworks.beginPath();
+        ctxFireworks.arc(f.x, f.y, 2, 0, Math.PI * 2);
+        ctxFireworks.fill();
+        f.x += f.dx;
+        f.y += f.dy;
+        f.life--;
+        if (f.life <= 0) fireworks.splice(i, 1);
+      });
+    }
+
+    // Start all animations (on button click)
+    function startAnimations() {
+      createStars();
+      createPetals();
+      setInterval(drawStars, 30);
+      setInterval(drawPetals, 40);
+      setInterval(() => {
+        createFirework();
+      }, 1500);
+      setInterval(drawFireworks, 30);
+    }
+
+    // Go to cake cutting page
+    function goToCake() {
+      window.location.href = "cake.html"; // replace later
+    }
+  </script>
+</body>
+</html> 

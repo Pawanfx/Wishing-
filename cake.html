@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Cutting 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #ffdde1, #ee9ca7);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #4a0066;
+      margin-bottom: 20px;
+    }
+
+    /* Cake base */
+    .cake {
+      position: relative;
+      width: 200px;
+      height: 120px;
+      background: #ff99aa;
+      border-radius: 0 0 20px 20px;
+      box-shadow: inset 0 -10px #cc6677;
+      margin-bottom: 30px;
+    }
+
+    /* Frosting */
+    .frosting {
+      position: absolute;
+      top: -30px;
+      left: 0;
+      width: 200px;
+      height: 40px;
+      background: #fff0f5;
+      border-radius: 20px 20px 0 0;
+      box-shadow: inset 0 -8px #ffb6c1;
+    }
+
+    /* Candles */
+    .candle {
+      position: absolute;
+      width: 12px;
+      height: 40px;
+      background: #fff;
+      border-radius: 4px;
+      top: -40px;
+    }
+    .candle:nth-child(1) { left: 10px; background:#ffcc00; }
+    .candle:nth-child(2) { left: 45px; background:#66ccff; }
+    .candle:nth-child(3) { left: 90px; background:#99ff99; }
+    .candle:nth-child(4) { left: 135px; background:#ffcc00; }
+    .candle:nth-child(5) { left: 185px; background:#99ff99; }
+
+    /* Flame */
+    .flame {
+      position: absolute;
+      top: -15px;
+      left: 2px;
+      width: 8px;
+      height: 15px;
+      background: radial-gradient(circle, #ff0 0%, #ff6600 70%, transparent 100%);
+      border-radius: 50%;
+      animation: flicker 0.2s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { transform: scaleY(1) scaleX(1); opacity: 1; }
+      100% { transform: scaleY(1.2) scaleX(0.8); opacity: 0.8; }
+    }
+
+    /* Button styles */
+    .btn {
+      margin: 10px;
+      padding: 12px 30px;
+      font-size: 16px;
+      color: white;
+      background: linear-gradient(90deg, #ff6ec4, #7873f5);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      background: linear-gradient(90deg, #ff4ecd, #5a4ef5);
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: red;
+      top: -10px;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1></h1>
+
+  <!-- Cake -->
+  <div class="cake">
+    <div class="frosting"></div>
+    <div class="candle"><div class="flame"></div></div>
+    <div class="candle"><div class="flame"></div></div>
+    <div class="candle"><div class="flame"></div></div>
+    <div class="candle"><div class="flame"></div></div>
+    <div class="candle"><div class="flame"></div></div>
+  </div>
+
+  <!-- Buttons -->
+  <button class="btn" onclick="cutCake()">🍰 Cut the Cake</button>
+  <br>
+  <a href="index.html"><button class="btn">🏠 Back to Home</button></a>
+
+  <!-- 🎵 Happy Birthday melody -->
+  <audio id="music" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c7eaa65649.mp3?filename=happy-birthday-to-you-20461.mp3"></audio>
+
+  <script>
+    function cutCake() {
+      // Stop flames (blow candles)
+      document.querySelectorAll('.flame').forEach(f => f.style.display = 'none');
+
+      // Play Happy Birthday song
+      document.getElementById('music').play();
+
+      // Generate confetti
+      for (let i = 0; i < 80; i++) {
+        let conf = document.createElement('div');
+        conf.className = 'confetti';
+        conf.style.left = Math.random() * window.innerWidth + 'px';
+        conf.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        conf.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 5000);
+      }
+    }
+  </script>
+
+</body>
+</html>
